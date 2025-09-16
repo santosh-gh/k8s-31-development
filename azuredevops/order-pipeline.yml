@@ -23,7 +23,7 @@ stages:
     displayName: Docker Build and Push
     jobs:
       - job: BuildPublishDockerImages
-        displayName: Build nad push Docker Images
+        displayName: Build and push Docker Images
         steps:
           - template: appTemplates/build.yml
             parameters:

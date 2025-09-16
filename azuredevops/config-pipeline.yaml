@@ -19,6 +19,7 @@ stages:
     displayName: Helm Package and Push
     jobs:
     - job: Helm
+      displayName: Helm Package and Push
       pool:
         vmImage: 'ubuntu-latest'
       steps:
