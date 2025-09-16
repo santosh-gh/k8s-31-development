@@ -12,7 +12,7 @@ variables:
   - name: helmChartPath 
     value: './multi-helmchart/'
   - name: helmChartVersion
-    value: $(Build.BuildId)
+    value: '0.1.0'
 
 stages:
   - stage: HelmPackagePush
