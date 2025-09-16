@@ -1,4 +1,4 @@
-# Part 30: Deploying microservice applications in Kubernetes using Helmchart and Flux CD with Image Automation
+# Part 31: Deploy microservices on Azure Kubernetes Service using Helm charts stored in HelmRepository (ACR), Build and Push Docker Images and Helm Charts through Azure   Pipelines. Manage delivery using Flux CD with image automation. Tag images with Semantic Version.
 
     Part1:   Manual Deployment (AzCLI + Docker Desktop + kubectl)  
     GitHub:  https://github.com/santosh-gh/k8s-01
@@ -265,7 +265,18 @@
             Private Repository
     GitHub:  https://github.com/santosh-gh/k8s-30-development.git     
     GitHub:  https://github.com/santosh-gh/k8s-30-deployment.git
-    YouTube: https://www.youtube.com/watch?v=NpS63UEO3Bg&list=PLr6ErUeFySVug9VG73_W2MypRez_ZycWh&index=26 
+    YouTube: https://www.youtube.com/watch?v=NpS63UEO3Bg&list=PLr6ErUeFySVug9VG73_W2MypRez_ZycWh&index=26
+
+    Part31: GitOps using Flux (Microservice + Flux CD + Helm Chart + HelmRepository(ACR) + Image Automation + AKS + Azure Pipeline)             
+            Helm Chart with multiple Microservices
+            Helm Charts in HelmRepository (Azure Container Registry)
+            Azure Pipeline for build and push docker images and helm charts to Azure container Registry
+            Use Semantic version for image tag
+            Manage delivery using Flux CD with image automation
+            Private Repository (OCI)
+    GitHub:  https://github.com/santosh-gh/k8s-30-development.git     
+    GitHub:  https://github.com/santosh-gh/k8s-30-deployment.git
+    YouTube: https://www.youtube.com/watch?v=NpS63UEO3Bg&list=PLr6ErUeFySVug9VG73_W2MypRez_ZycWh&index=26
 
 # Architesture
 
