@@ -32,7 +32,7 @@ steps:
       git config user.email "santosh.mohapatra25@gmail.com"
       git add .
       git commit -m "Bump version to $(VERSION)"
-      git push origin HEAD:main
+      git push https://$(GITHUB_TOKEN)@github.com/santosh-gh/k8s-31-development.git HEAD:main
     displayName: "Commit new version"
     condition: succeeded()
   
