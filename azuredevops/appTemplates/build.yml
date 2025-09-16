@@ -1,0 +1,52 @@
+parameters:
+- name: "acrServiceConnection"
+  type: string
+- name: "imageName"
+  type: string
+- name: "dockerFilePath"
+  type: string
+- name: "tag"
+  type: string
+
+steps: 
+  - bash: |
+        VERSION=$(cat ./azuredevops/${{parameters.imageName}}-version.txt)
+        echo "Current version: $VERSION"
+
+        IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
+        PATCH=$((PATCH+1))
+        NEW_VERSION="$MAJOR.$MINOR.$PATCH"
+
+        echo "Bumped version: $NEW_VERSION"
+
+        # Write back to  ${{parameters.imageName}}-version.txt
+        echo $NEW_VERSION > ./azuredevops/${{parameters.imageName}}-version.txt
+
+        # Set pipeline variable
+        echo "##vso[task.setvariable variable=VERSION]$NEW_VERSION"
+    displayName: "Bump Patch Version"
+
+    # 🔹 Step 2: Commit updated version.txt back to repo (optional)
+  - bash: |
+      git config user.name "santosh-gh"
+      git config user.email "santosh.mohapatra25@gmail.com"
+      git add .
+      git commit -m "Bump version to $(VERSION)"
+      git push origin HEAD:main
+    displayName: "Commit new version"
+    condition: succeeded()
+  
+  - task: DockerInstaller@0
+    displayName: Install Docker
+    inputs:
+      dockerVersion: '17.09.0-ce'
+      
+  - task: Docker@2
+    displayName: Build and publish ${{parameters.imageName}} to ACR
+    inputs:
+      command: buildAndPush
+      containerRegistry: ${{parameters.acrServiceConnection}}
+      repository: ${{parameters.imageName}}
+      Dockerfile: ${{parameters.dockerFilePath}}
+      tags: |
+        $(VERSION)
